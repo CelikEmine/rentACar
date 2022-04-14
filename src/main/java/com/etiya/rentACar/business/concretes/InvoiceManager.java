@@ -36,6 +36,7 @@ public class InvoiceManager implements InvoiceService {
     @Override
     public DataResult<Invoice> add(CreateInvoiceRequest createInvoiceRequest) {
 
+
         Invoice invoice=this.modelMapperService.forRequest().map(createInvoiceRequest,Invoice.class);
 
         invoiceDao.save(invoice);

@@ -33,6 +33,7 @@ public class CreateInvoiceRequest {
 
     private int customerId;
 
+    @JsonIgnore
     private int rentalId;
 
     @JsonIgnore

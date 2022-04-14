@@ -65,6 +65,10 @@ public class PaymentManager implements PaymentService {
         Payment payment = this.modelMapperService.forRequest().map(createPaymentRequest, Payment.class);
 
         Rental rental=this.rentalService.add(createPaymentRequest.getCreateRentalRequest()).getData();
+        createPaymentRequest.getCreateInvoiceRequest().setRentalId(rental.getId());
+
+        createPaymentRequest.getCreateInvoiceRequest().setDayCount(this.diffDates(createPaymentRequest));
+        createPaymentRequest.getCreateInvoiceRequest().setTotalPrice(this.addTotalPrice(createPaymentRequest));
 
         Invoice invoice=this.invoiceService.add(createPaymentRequest.getCreateInvoiceRequest()).getData();
         //invoice setTotalPrice!
@@ -139,10 +143,8 @@ public class PaymentManager implements PaymentService {
 
             List<ListRentalAdditionalServiceDetailDto> result2 = this.rentalAdditionalServiceDetailService.getByAdditionalserviceId(orderedAdditionalItem).getData();
 
-            for (int additionalItem : result2.stream().map(item -> item.getAdditionalService().getId()).collect(Collectors.toList())) {
-                AdditionalServiceDto response = this.additionalServiceService.getById(additionalItem).getData();
-                totalPrice += response.getDailyPrice();
-            }
+            AdditionalServiceDto response = this.additionalServiceService.getById(orderedAdditionalItem).getData();
+            totalPrice += response.getDailyPrice();
         }
         return totalPrice;
     }
