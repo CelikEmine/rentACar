@@ -83,6 +83,8 @@ public class AdditionalServiceManager implements AdditionalServiceService {
         return new SuccessDataResult<>(additionalServiceDto);
     }
 
+
+
     public void checkIfCityExist(String cityName){
         if(this.additionalServiceDao.getByNameIgnoreCase(cityName).size()!=0){
             throw new RuntimeException(BusinessMessages.AdditionalServiceMessages.ADDITIONAL_SERVİCE_REGISTERED_NAME);

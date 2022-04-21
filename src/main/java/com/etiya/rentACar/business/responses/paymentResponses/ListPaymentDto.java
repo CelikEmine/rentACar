@@ -34,6 +34,4 @@ public class ListPaymentDto {
 
     private ListRentalAdditionalServiceDetailDto listRentalAdditionalServiceDetailDto;
 
-    private ListAdditionalServiceDto listAdditionalServiceDto;
-
 }

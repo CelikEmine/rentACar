@@ -17,10 +17,7 @@ import com.etiya.rentACar.core.utilities.results.Result;
 import com.etiya.rentACar.core.utilities.results.SuccessDataResult;
 import com.etiya.rentACar.core.utilities.results.SuccessResult;
 import com.etiya.rentACar.dataAccess.abstracts.PaymentDao;
-import com.etiya.rentACar.entities.concretes.CreditCard;
-import com.etiya.rentACar.entities.concretes.Invoice;
-import com.etiya.rentACar.entities.concretes.Payment;
-import com.etiya.rentACar.entities.concretes.Rental;
+import com.etiya.rentACar.entities.concretes.*;
 import org.springframework.stereotype.Service;
 
 import java.time.temporal.ChronoUnit;
@@ -71,13 +68,14 @@ public class PaymentManager implements PaymentService {
         createPaymentRequest.getCreateInvoiceRequest().setTotalPrice(this.addTotalPrice(createPaymentRequest));
 
         Invoice invoice=this.invoiceService.add(createPaymentRequest.getCreateInvoiceRequest()).getData();
-        //invoice setTotalPrice!
+
+
         this.newOrderedAdditionalProperty(createPaymentRequest,rental);
+
 
         payment.setRental(rental);
         payment.setInvoice(invoice);
         payment.setTotalPrice(addTotalPrice(createPaymentRequest));
-
 
         this.paymentDao.save(payment);
 
@@ -158,6 +156,14 @@ public class PaymentManager implements PaymentService {
             createRentalAdditionalServiceDetailRequest.setAdditionalServiceId(orderedAdditionalItem);
             rentalAdditionalServiceDetailService.add(createRentalAdditionalServiceDetailRequest);
         }
+
+        // List<ListRentalAdditionalServiceDetailDto> response=this.rentalAdditionalServiceDetailService.getByRentalId(rental.getId()).getData();
+        //List<RentalAdditionalServiceDetail> results=response.stream().map(result->this.modelMapperService.forDto().map(result,RentalAdditionalServiceDetail.class)).collect(Collectors.toList());
+
+        /*for(RentalAdditionalServiceDetail item : results){
+            payment.setRentalAdditionalServiceDetail(item);
+        }*/
+
 
     }
 

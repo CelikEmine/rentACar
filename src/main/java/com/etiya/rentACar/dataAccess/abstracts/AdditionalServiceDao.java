@@ -11,5 +11,4 @@ import java.util.List;
 public interface AdditionalServiceDao extends JpaRepository<AdditionalService,Integer> {
 
     List<AdditionalService> getByNameIgnoreCase(String name);
-
 }

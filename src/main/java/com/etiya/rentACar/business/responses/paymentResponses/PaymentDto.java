@@ -32,7 +32,5 @@ public class PaymentDto {
 
     private ListRentalAdditionalServiceDetailDto listRentalAdditionalServiceDetailDto;
 
-    private ListAdditionalServiceDto listAdditionalServiceDto;
-
 
 }

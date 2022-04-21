@@ -64,11 +64,12 @@ public class Payment {
     @JoinColumn(name="rentCityId",referencedColumnName = "id")
     private City rentCity;
 
-     */
+
 
     @ManyToOne
     @JoinColumn(name="rentalAdditionalServiceDetail_id")
     private RentalAdditionalServiceDetail rentalAdditionalServiceDetail;
+*/
 
     @ManyToOne
     @JoinColumn(name="invoice_id")

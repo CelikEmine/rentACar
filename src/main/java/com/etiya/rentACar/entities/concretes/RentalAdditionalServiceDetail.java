@@ -26,6 +26,7 @@ public class RentalAdditionalServiceDetail {
     @JoinColumn(name="additionalservice_id")
     private AdditionalService additionalservice;
 
+    /*
     @OneToMany(mappedBy = "rentalAdditionalServiceDetail")
-    private List<Payment> payments;
+    private List<Payment> payments; */
 }
